@@ -1,0 +1,1 @@
+Place your own 256-byte DMG boot ROM here as dmg_boot.bin after downloading the application. This repository does not supply firmware or game ROMs. Games can be stored here and opened with File > Open ROM.

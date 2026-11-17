@@ -1,0 +1,23 @@
+# Product-only repository: firmware, games, private data and development output stay local.
+*.gb
+*.gbc
+*.gba
+*.rom
+*.bin
+*.sav
+*.srm
+*.exe
+*.dll
+*.zip
+*.pdb
+settings*.json
+REA/
+research/
+evidence/
+training/
+artifacts/
+BOOTROM/
+src/
+tests/
+bin/
+obj/
