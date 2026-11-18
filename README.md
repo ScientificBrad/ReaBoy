@@ -1,107 +1,108 @@
+<div align="center">
+
 # ReaBoy
 
-**A standalone Game Boy emulator for Windows, by BJ Studios.**  
-Built in Manchester, England.
+### Game Boy games. One clean Windows app.
 
-[Download ReaBoy v1.0 for Windows x64](https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy-v1.0-win-x64.zip) · [All releases](https://github.com/ScientificBrad/ReaBoy/releases)
+**Windows x64 · Version 1.0.1 · BJ Studios, Manchester**
 
-ReaBoy brings the original monochrome Game Boy to a compact Windows application, with crisp pixel scaling, four-channel sound and a familiar boot intro.
+[**Download EXE**](https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy.exe) · [**Portable ZIP**](https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy-v1.0.1-win-x64.zip) · [**Product website**](https://scientificbrad.github.io/ReaBoy/) · [Releases](https://github.com/ScientificBrad/ReaBoy/releases)
 
-## Screenshots
+No .NET install required. Licensed open-source boot firmware included.
 
-### Tetris — gameplay
-![Tetris gameplay in ReaBoy](screenshots/tetris-gameplay.png)
+![ReaBoy boot-up preview](docs/assets/boot-preview.gif)
 
-### Tetris — pause screen
-![Tetris pause screen in ReaBoy](screenshots/tetris-pause.png)
+</div>
 
-Tetris is shown to demonstrate compatibility. No game files are included.
+## Install in one command
 
-## Get started
+Paste this into **Windows PowerShell**:
 
-1. Download the Windows ZIP from Releases and extract it.
-2. For the original boot intro, place your own **256-byte DMG boot ROM** in **rom/dmg_boot.bin**, beside ReaBoy.exe.
-3. Open **ReaBoy.exe**. It starts on the Nintendo logo / no-cartridge screen.
-4. Use **File > Open ROM** to choose your own Game Boy game, or drag a game onto the window.
+```powershell
+curl.exe -fsSL https://raw.githubusercontent.com/ScientificBrad/ReaBoy/main/install.ps1 -o "$env:TEMP\ReaBoy-install.ps1"; if ($LASTEXITCODE -eq 0) { powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\ReaBoy-install.ps1" }
+```
 
-No separate .NET installation is required. Windows x64 only.
+The [installer](install.ps1) downloads the latest Windows ZIP, verifies its SHA-256 checksum, installs under **%LOCALAPPDATA%/Programs/ReaBoy**, creates a Start-menu shortcut, and opens the app. No administrator rights are needed. Existing settings, saves and custom boot firmware are preserved.
 
-The folder layout after extraction is:
+Prefer a portable copy? Download the ZIP and extract it anywhere. Or download the standalone EXE; its runtime and fallback firmware are embedded.
 
-| File or folder | Purpose |
-|---|---|
-| ReaBoy.exe | Application and bundled runtime |
-| README.md | User guide, controls and version details |
-| LICENSES.txt | Application copyright and runtime notices |
-| rom/dmg_boot.bin | Your own boot firmware; not supplied |
-| rom/ | Optional location for your own game ROMs |
+## New in 1.0.1
 
-ReaBoy automatically finds the adjacent boot ROM when no valid custom boot path is configured.
-You can also choose firmware with **File > Choose Boot ROM**.
-**File > Skip Intro** skips the firmware intro on subsequent resets and game loads.
-The adjacent rom folder is the default game-file location when no previous directory is available.
+- **Dr. Mario freeze fixed:** LCD-off status now reports mode 0, allowing screen changes to complete.
+- **Audio stability:** native audio headers stay pinned while the Windows driver owns them.
+- **Boot firmware included:** Bootix DMG v1.2 is bundled under CC0-1.0.
+- Separate EXE, ZIP, installer and checksum downloads.
+- A short boot-up video, fresh screenshots and a dedicated product page.
 
-**Nintendo boot firmware and commercial game ROMs are not included.**
-Availability on an archive website does not grant a redistribution licence.
-Use firmware and games you have the right to use.
+## Fresh screenshots
+
+| Tetris | Dr. Mario | Super Mario Land |
+|---|---|---|
+| ![Tetris running in ReaBoy](docs/assets/tetris.png) | ![Dr. Mario gameplay after the freeze fix](docs/assets/dr-mario.png) | ![Super Mario Land world 1-1](docs/assets/mario-land.png) |
+
+These are actual captures from ReaBoy v1.0.1. Games are shown for compatibility demonstration; no commercial game files are included.
+
+[Watch the short boot-up video](docs/assets/boot-preview.mp4) · [Open the product page](https://scientificbrad.github.io/ReaBoy/)
+
+## Start playing
+
+1. Open **ReaBoy.exe**. The bundled firmware lets the app start without a separate firmware download.
+2. Choose **File > Open ROM**, or drag in your own Game Boy game.
+3. Use **Emulation > Remove Cartridge** to return to the no-cartridge screen, or **Reset** to restart the game.
+
+The normal window stays at the selected display size. Scaling and fullscreen are in the Video menu.
+
+## About the included ROM
+
+**rom/dmg_boot.bin is Bootix DMG v1.2**, an unmodified open-source replacement, **not Nintendo's original firmware**.
+
+- [Upstream Bootix project](https://github.com/Ashiepaws/Bootix)
+- [Full CC0-1.0 licence](rom/BOOTIX-LICENSE.txt)
+- [Pinned version, commit and SHA-256](rom/BOOTIX-SOURCE.txt)
+- [Download the boot ROM](https://github.com/ScientificBrad/ReaBoy/releases/latest/download/dmg_boot.bin)
+
+The same firmware is embedded in the EXE. A valid custom firmware selected through **File > Choose Boot ROM** takes priority, followed by an adjacent **rom/dmg_boot.bin**. If neither exists, the embedded copy is used.
+
+Your existing original Nintendo boot ROM selection remains respected. **File > Skip Intro** skips boot on subsequent resets and game loads.
 
 ## Features
 
 - Original monochrome Game Boy hardware target.
-- Sharp SM83 CPU emulation, memory bus, PPU graphics and four-channel APU.
-- ROM-only and MBC1 cartridge support, up to 2 MiB ROM and 32 KiB RAM.
+- Sharp SM83 CPU, memory bus, PPU graphics and four-channel APU.
+- ROM-only and MBC1 cartridges, up to 2 MiB ROM and 32 KiB RAM.
 - Battery-backed MBC1 saves.
-- Open-file dialog, drag and drop, and recent games.
-- Pause/resume, reset, remove cartridge and 3x fast forward.
-- Fixed 1x–4x window scales, fullscreen and integer scaling.
-- Classic green and grayscale display palettes.
-- Sound enable/mute, volume and configurable keyboard controls.
-- Persistent settings and an About dialog.
-
-The app starts automatically. **Remove Cartridge** returns to the empty-console logo screen; **Reset** restarts the selected game.
-The normal window stays at the chosen display size.
+- File picker, drag and drop and recent games.
+- Pause/resume, reset, remove cartridge and 3× fast forward.
+- Fixed 1×–4× window sizes, integer scaling and fullscreen.
+- Classic green and grayscale palettes.
+- Configurable keyboard controls, volume and mute.
 
 ## Default controls
 
-| Game Boy input | Keyboard |
+| Input | Keys |
 |---|---|
 | D-pad | Arrow keys or WASD |
-| A | Z or J |
-| B | X or K |
-| Start | Enter |
-| Select | Shift or Space |
-
-| App command | Key |
-|---|---|
+| A / B | Z / X or J / K |
+| Start / Select | Enter / Shift |
+| Pause / Reset | P / R |
+| Fullscreen / Mute | F11 / M |
 | Open ROM | Ctrl+O |
-| Pause/resume | P |
-| Reset | R |
-| Mute/unmute | M |
-| Fullscreen | F11 |
-| Leave fullscreen | Escape |
 
-## Settings and saves
-
-Settings and battery RAM are kept under **%APPDATA%/BJStudios/ReaBoy/**.
-The app saves battery RAM when changing or resetting games, removing a cartridge, or exiting.
-Your games and firmware remain where you placed them.
+Settings and saves are kept under **%APPDATA%/BJStudios/ReaBoy/**. Games and firmware remain where you placed them.
 
 ## Compatibility
 
-Tetris is the primary integration test. This is the first release; broad game compatibility and exact hardware timing are not certified.
+ReaBoy targets monochrome Game Boy games with ROM-only or MBC1 cartridges. Game Boy Color-only titles, MBC3/MBC5, link cable and save states are not supported.
 
-Game Boy Color-only games, MBC3, MBC5, link cable and save states are not supported.
-Fast forward targets 3x speed and intentionally mutes sound.
+Exact hardware timing and broad game compatibility are not certified. Fast forward targets 3× speed and intentionally mutes sound.
 
-## About
+## Downloads and licences
 
-**ReaBoy v1.0**  
-Product version 1.0.0 · Windows x64 · C# / .NET 8  
+The [latest release](https://github.com/ScientificBrad/ReaBoy/releases/latest) includes **ReaBoy.exe**, a portable ZIP, the PowerShell installer, the licensed boot ROM and **SHA256SUMS.txt**.
+
+Application and third-party terms are in [LICENSES.txt](LICENSES.txt). Bootix keeps its CC0 licence; ReaBoy application source is not published here.
+
 **BJ Studios — Manchester, England**  
 © 2026 BJ Studios. All rights reserved.
 
-This repository hosts ReaBoy downloads, screenshots and user documentation.
-Application and runtime terms are in [LICENSES.txt](LICENSES.txt).
-
-ReaBoy is independent and is not affiliated with or endorsed by Nintendo.
-Nintendo, Game Boy and Tetris names, trademarks and game content belong to their respective rights holders.
+ReaBoy is independent and not affiliated with Nintendo. Game names, trademarks and game content belong to their respective rights holders.

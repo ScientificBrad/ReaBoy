@@ -1,0 +1,6 @@
+Bootix DMG v1.2 by Ashiepaws/Hacktix. Unmodified binary, renamed dmg_boot.bin.
+Upstream: https://github.com/Ashiepaws/Bootix
+Commit: 5a838dd2c588c143caf47f62ac22d5c6ff4b1e19
+Licence: CC0-1.0
+SHA-256: c313435280dda8ccfae0786c7159aab791a00930605101c647794f64bfa17b5e
+This is an open-source replacement, not a Nintendo firmware dump.

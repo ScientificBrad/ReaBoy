@@ -1,1 +1,1 @@
-Place your own 256-byte DMG boot ROM here as dmg_boot.bin after downloading the application. This repository does not supply firmware or game ROMs. Games can be stored here and opened with File > Open ROM.
+The supplied dmg_boot.bin is Bootix DMG v1.2 (CC0-1.0), an open-source replacement. The same firmware is embedded in ReaBoy.exe. Its full licence and provenance are included. Commercial game ROMs and original Nintendo firmware are not supplied.

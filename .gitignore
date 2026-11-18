@@ -21,3 +21,6 @@ src/
 tests/
 bin/
 obj/
+
+# Only the verified CC0 Bootix replacement is included.
+!rom/dmg_boot.bin
