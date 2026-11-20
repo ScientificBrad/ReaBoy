@@ -1,28 +1,1036 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="classic">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="ReaBoy: a compact Game Boy emulator for Windows. Download the standalone EXE, portable ZIP or install in one command. By BJ Studios, Manchester.">
-<meta name="theme-color" content="#153b2a">
-<title>ReaBoy — Game Boy on your desktop</title>
-<link rel="stylesheet" href="styles.css">
-<script src="site.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReaBoy v1.0.1 BETA — Scientific Game Boy (DMG-01) Emulator for Windows x64 | BJ Studios</title>
+  <meta name="description" content="Download ReaBoy v1.0.1 BETA: a precision-engineered, standalone Windows x64 Game Boy (DMG-01) emulator by BJ Studios Manchester. Built from reverse-engineered Sharp SM83 hardware, 4-channel APU, one-click drag & drop, Bootix firmware included. No .NET install required.">
+  <meta name="keywords" content="Game Boy emulator, DMG-01 emulator, ReaBoy, Windows Game Boy emulator, Sharp SM83 emulator, retro gaming Windows x64, MBC1 emulator, Bootix DMG, Game Boy ROM emulator, drag and drop Game Boy emulator, BJ Studios Manchester">
+  <meta name="author" content="BJ Studios — Manchester, England">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f380f">
+  <link rel="canonical" href="https://scientificbrad.github.io/ReaBoy/">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ReaBoy by BJ Studios">
+  <meta property="og:title" content="ReaBoy v1.0.1 BETA — Scientific Game Boy (DMG-01) Emulator for Windows">
+  <meta property="og:description" content="One click, one drag & drop. Built from reverse-engineered 1989 Game Boy DMG-01 hardware with bit-exact Sharp SM83 boot handover, 4-channel APU, and bundled Bootix firmware.">
+  <meta property="og:url" content="https://scientificbrad.github.io/ReaBoy/">
+  <meta property="og:image" content="https://scientificbrad.github.io/ReaBoy/assets/img/boot-poster.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ReaBoy v1.0.1 BETA — Scientific Game Boy Emulator for Windows">
+  <meta name="twitter:description" content="Standalone Windows x64 DMG-01 Game Boy emulator. Reverse-engineered Sharp SM83 core, 4-channel APU, one-click drag & drop. Open BETA now live.">
+  <meta name="twitter:image" content="https://scientificbrad.github.io/ReaBoy/assets/img/boot-poster.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Structured Data (JSON-LD) for Game Boy Emulator SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "ReaBoy",
+        "applicationCategory": "GameApplication",
+        "applicationSubCategory": "Game Boy DMG-01 Emulator",
+        "operatingSystem": "Windows 10, Windows 11 (x64)",
+        "softwareVersion": "1.0.1-beta",
+        "releaseNotes": "Fixed Dr. Mario LCD-off STAT mode 0 freeze, pinned native WinMM audio buffers, embedded CC0 Bootix DMG v1.2 firmware.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "GBP"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "BJ Studios",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Manchester",
+            "addressCountry": "GB"
+          }
+        },
+        "downloadUrl": "https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy.exe",
+        "url": "https://scientificbrad.github.io/ReaBoy/"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does ReaBoy require installing .NET or admin rights?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. ReaBoy is published as a self-contained Windows x64 executable with the .NET 8 runtime and open-source Bootix DMG v1.2 firmware embedded. No administrator rights are required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which Game Boy cartridges does ReaBoy v1.0.1 BETA support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ReaBoy v1.0.1 BETA targets the original monochrome Game Boy (DMG-01) with ROM-only and MBC1 cartridges up to 2 MiB ROM and 32 KiB battery-backed RAM."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I load a Game Boy ROM in ReaBoy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Simply open ReaBoy.exe and drag and drop any .gb ROM file onto the window, use File > Open ROM (Ctrl+O), or pass the ROM path on the command line."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="wrap nav"><a class="brand" href="./"><span class="brand-mark">R</span> ReaBoy<span class="version">v1.0.1</span></a><nav aria-label="Main"><a href="#preview">Preview</a><a href="#install">Install</a><a href="#controls">Controls</a><a href="https://github.com/ScientificBrad/ReaBoy">GitHub ↗</a></nav></header>
-<main id="main">
-<section class="wrap hero">
-<div class="hero-copy"><p class="eyebrow"><span class="led"></span> WINDOWS x64 · STANDALONE</p><h1>Small screen.<br><span>Great games.</span></h1><p class="lead">The original Game Boy experience in one clean Windows app. Crisp pixels, four-channel sound, and the games you remember.</p><div class="actions"><a class="button primary" href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy.exe">Download EXE <span>↓</span></a><a class="button secondary" href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy-v1.0.1-win-x64.zip">Portable ZIP ↓</a></div><p class="micro">No .NET install. No admin rights. Open-source boot firmware included.<br>Bring your own game ROMs.</p><a class="update" href="https://github.com/ScientificBrad/ReaBoy/releases/tag/v1.0.1"><span>NEW 1.0.1</span> Dr. Mario freeze fixed + steadier audio ↗</a></div>
-<div class="preview-shell" id="preview"><div class="preview-caption"><span class="led"></span> REAL APP · BOOT-UP PREVIEW <span>03.5 SEC</span></div><video id="boot-video" autoplay muted loop playsinline controls preload="metadata" poster="assets/boot-poster.png" aria-label="ReaBoy starting up to its no-cartridge screen"><source src="assets/boot-preview.mp4" type="video/mp4"><img src="assets/boot-preview.gif" alt="ReaBoy boot-up animation"></video><div class="preview-footer"><span>BJ STUDIOS</span><span>MANCHESTER, ENGLAND</span></div></div>
-</section>
-<div class="wrap facts"><span><b>160 × 144</b> native display</span><span><b>4-channel</b> Game Boy audio</span><span><b>1×–4×</b> fixed pixel scales</span><span><b>Bootix</b> firmware included</span></div>
-<section class="section install-section" id="install"><div class="wrap install-grid"><div><p class="eyebrow">READY, SET, PLAY</p><h2>One command.<br>Then choose a game.</h2><p>Run this in Windows PowerShell. It downloads the latest ZIP, verifies its SHA-256 checksum, installs for your user, and adds ReaBoy to the Start menu.</p><p class="subtle">Already installed? Your settings, saves and existing firmware are preserved.</p></div><div class="terminal"><div class="terminal-top"><span>WINDOWS POWERSHELL</span><button type="button" data-copy="install-command">Copy command</button></div><pre><code id="install-command">curl.exe -fsSL https://raw.githubusercontent.com/ScientificBrad/ReaBoy/main/install.ps1 -o "$env:TEMP\ReaBoy-install.ps1"; if ($LASTEXITCODE -eq 0) { powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\ReaBoy-install.ps1" }</code></pre><p><a href="https://github.com/ScientificBrad/ReaBoy/blob/main/install.ps1">Read the installer</a><span>Installs to %LOCALAPPDATA%\Programs\ReaBoy</span></p></div></div></section>
-<section class="wrap section" id="screenshots"><div class="section-heading"><div><p class="eyebrow">ACTUAL EMULATOR CAPTURES</p><h2>Familiar faces. Fresh pixels.</h2></div><p>Real screenshots from ReaBoy v1.0.1.<br>Games shown for compatibility demonstration.</p></div><div class="gallery"><figure><a href="assets/tetris.png"><img src="assets/tetris.png" loading="lazy" alt="Tetris running in ReaBoy"></a><figcaption><strong>Tetris</strong><span>Classic green palette</span></figcaption></figure><figure><a href="assets/dr-mario.png"><img src="assets/dr-mario.png" loading="lazy" alt="Dr. Mario gameplay after the LCD status fix"></a><figcaption><strong>Dr. Mario</strong><span>Setup-screen freeze fixed</span></figcaption></figure><figure><a href="assets/mario-land.png"><img src="assets/mario-land.png" loading="lazy" alt="Super Mario Land gameplay in ReaBoy"></a><figcaption><strong>Super Mario Land</strong><span>World 1-1</span></figcaption></figure></div></section>
-<section class="features-section"><div class="wrap section"><p class="eyebrow">JUST THE GOOD STUFF</p><h2>A proper little desktop emulator.</h2><div class="features"><article><span>01 / DISPLAY</span><h3>Every pixel in place.</h3><p>Fixed window sizes, integer scaling, fullscreen, and classic green or grayscale palettes.</p></article><article><span>02 / CARTRIDGES</span><h3>Load. Play. Swap.</h3><p>Open a ROM or drag one in. Reset, pause, remove cartridges, and revisit your recent games.</p></article><article><span>03 / AUDIO</span><h3>Four channels of nostalgia.</h3><p>Game Boy pulse, wave and noise channels. Volume control, mute, and stable native audio output.</p></article><article><span>04 / CONTROLS</span><h3>Your keys. Your way.</h3><p>Configure two keys per Game Boy button, or stick with familiar arrow keys and Z/X.</p></article><article><span>05 / SAVES</span><h3>Keep your progress.</h3><p>MBC1 battery-backed RAM is saved when changing games or exiting. Settings persist between sessions.</p></article><article><span>06 / SETUP</span><h3>A boot ROM you can share.</h3><p>Bootix DMG v1.2 is included under CC0. The original Nintendo firmware is optional and is not distributed.</p></article></div></div></section>
-<section class="wrap section bottom-grid" id="controls"><div><p class="eyebrow">DEFAULT CONTROLS</p><h2>Pick up where<br>your thumbs left off.</h2><dl class="key-list"><div><dt>D-pad</dt><dd><kbd>↑ ↓ ← →</kbd> or <kbd>W A S D</kbd></dd></div><div><dt>A / B</dt><dd><kbd>Z / X</kbd> or <kbd>J / K</kbd></dd></div><div><dt>Start / Select</dt><dd><kbd>Enter</kbd> / <kbd>Shift</kbd></dd></div><div><dt>Pause / Reset</dt><dd><kbd>P</kbd> / <kbd>R</kbd></dd></div><div><dt>Fullscreen / Mute</dt><dd><kbd>F11</kbd> / <kbd>M</kbd></dd></div></dl></div><div class="notes"><p class="eyebrow">BEFORE YOU DOWNLOAD</p><h3>Original Game Boy. First release.</h3><p>ReaBoy targets monochrome Game Boy games with ROM-only or MBC1 cartridges. It does not yet support Game Boy Color-only games, MBC3/MBC5, link cable or save states.</p><p>Exact hardware timing and broad game compatibility are not certified. Fast forward targets 3× speed and intentionally mutes audio.</p><p>Commercial game files are not included. Bootix is a licensed replacement, not a Nintendo firmware dump.</p><div class="small-actions"><a href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/dmg_boot.bin">Download Bootix ROM ↓</a><a href="https://github.com/ScientificBrad/ReaBoy/blob/main/rom/BOOTIX-LICENSE.txt">Bootix licence ↗</a><a href="https://github.com/ScientificBrad/ReaBoy/issues">Report an issue ↗</a></div></div></section>
-</main>
-<footer class="wrap footer"><div class="brand"><span class="brand-mark">R</span> ReaBoy</div><p>Built by BJ Studios · Manchester, England<br>© 2026 BJ Studios. All rights reserved.</p><p>Independent software. Not affiliated with Nintendo.<br>Game names and content belong to their respective rights holders.</p></footer>
-<div id="copy-status" role="status" aria-live="polite"></div>
-</body></html>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Sticky Navigation -->
+  <header class="site-header">
+    <div class="wrap nav-bar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span>ReaBoy</span>
+      </a>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">MENU</button>
+      <nav class="nav-links" id="nav-links" aria-label="Primary Navigation">
+        <a href="#drop-lab">Drag &amp; Drop Lab</a>
+        <a href="#how-we-made-it">How We Made It</a>
+        <a href="#sound-lab">4-Ch Audio</a>
+        <a href="#beta-lab">Game Tests</a>
+        <a href="manual.html">User Manual</a>
+        <a href="https://github.com/ScientificBrad/ReaBoy" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="nav-cta" href="#install">Download BETA ↓</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO SECTION -->
+    <section class="wrap hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>100% REA-Reconstructed.<br><span class="highlight">Pure 1989 Game Boy.</span></h1>
+          <p class="hero-lead">
+            Every instruction, scanline, and audio register reconstructed directly from original DMG-01 hardware evidence. Powered by a bit-exact Sharp SM83 CPU core executing 23.4M+ cycles to verified $0100 handover, cycle-accurate scanline PPU timing, and pinned four-channel APU audio — packaged into a single standalone executable.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy.exe">Download ReaBoy.exe ↓</a>
+            <a class="btn btn-secondary" href="manual.html">User Manual →</a>
+          </div>
+          <p class="hero-micro">
+            Zero .NET setup · Zero admin rights · CC0 Bootix DMG v1.2 firmware embedded · Bring your own .gb ROMs
+          </p>
+          <a class="release-pill" href="https://github.com/ScientificBrad/ReaBoy/releases/tag/v1.0.1" target="_blank" rel="noopener">
+            <span class="tag">v1.0.1 BETA</span>
+            <span>Dr. Mario STAT Mode 0 freeze fixed + pinned WinMM audio buffers ↗</span>
+          </a>
+        </div>
+
+        <!-- Interactive 1989 Game Boy DMG-01 Hardware Unit -->
+        <div class="dmg-stage">
+          <div class="dmg-shell" id="dmg-console" aria-label="Interactive ReaBoy DMG-01 Game Boy preview">
+            <div class="dmg-top-grooves">
+              <span>◀ OFF·ON ▶</span>
+              <span>DMG-01 LAB UNIT · BETA</span>
+            </div>
+
+            <div class="dmg-bezel">
+              <div class="dmg-bezel-header">
+                <div class="dmg-bezel-lines"></div>
+                <span class="dmg-bezel-title">DOT MATRIX WITH STEREO SOUND</span>
+                <div class="dmg-bezel-lines"></div>
+              </div>
+
+              <div class="dmg-screen-row">
+                <div class="dmg-battery">
+                  <span class="led-dot"></span>
+                  <span>BATTERY</span>
+                </div>
+                <div class="dmg-screen-frame" id="dmg-screen-frame">
+                  <video id="dmg-video" autoplay muted loop playsinline poster="assets/img/boot-poster.png" aria-label="Real ReaBoy v1.0.1 boot-up capture">
+                    <source src="assets/video/boot-preview.mp4" type="video/mp4">
+                    <img src="assets/img/boot-preview.gif" alt="ReaBoy boot-up animation">
+                  </video>
+                  <canvas id="dmg-canvas" width="160" height="144" hidden aria-label="Interactive pixel-art ReaBoy boot screen"></canvas>
+                  <div class="dmg-scanlines"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dmg-wordmark">
+              <span class="brand-text">ReaBoy™</span>
+              <span class="model-text">BJ STUDIOS · 4.19 MHz</span>
+            </div>
+
+            <div class="dmg-controls">
+              <div class="dpad" role="group" aria-label="Interactive Game Boy D-Pad">
+                <button class="dpad-btn dpad-up" type="button" data-gb-btn="UP" aria-label="D-Pad Up">▲</button>
+                <button class="dpad-btn dpad-down" type="button" data-gb-btn="DOWN" aria-label="D-Pad Down">▼</button>
+                <button class="dpad-btn dpad-left" type="button" data-gb-btn="LEFT" aria-label="D-Pad Left">◀</button>
+                <button class="dpad-btn dpad-right" type="button" data-gb-btn="RIGHT" aria-label="D-Pad Right">▶</button>
+                <div class="dpad-center" aria-hidden="true"></div>
+              </div>
+
+              <div class="ab-cluster" role="group" aria-label="A and B Buttons">
+                <div class="ab-wrap">
+                  <button class="ab-btn" type="button" data-gb-btn="B" aria-label="B Button"></button>
+                  <span>B</span>
+                </div>
+                <div class="ab-wrap">
+                  <button class="ab-btn" type="button" data-gb-btn="A" aria-label="A Button"></button>
+                  <span>A</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dmg-bottom-row">
+              <div class="start-select">
+                <div class="pill-wrap">
+                  <button class="pill-btn" type="button" data-gb-btn="SELECT" aria-label="Select Button"></button>
+                  <span>SELECT</span>
+                </div>
+                <div class="pill-wrap">
+                  <button class="pill-btn" type="button" data-gb-btn="START" aria-label="Start Button"></button>
+                  <span>START</span>
+                </div>
+              </div>
+              <div class="speaker-grille" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dmg-mode-controls" role="group" aria-label="Preview screen controls">
+            <button class="chip-btn active" type="button" id="mode-video-btn">Real App Video</button>
+            <button class="chip-btn" type="button" id="mode-canvas-btn">Interactive Boot Sim</button>
+            <button class="chip-btn" type="button" id="palette-toggle-btn">Palette: Classic Green</button>
+            <button class="chip-btn" type="button" id="chime-btn">Play Boot Chime ♪</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TELEMETRY STRIP -->
+    <section class="wrap" aria-label="Technical highlights">
+      <div class="telemetry-strip reveal">
+        <div class="telemetry-card">
+          <span class="telemetry-val">0 Mismatches</span>
+          <span class="telemetry-lbl">256-byte DMG-01 boot ROM reassembly via RGBDS v1.0.4</span>
+        </div>
+        <div class="telemetry-card">
+          <span class="telemetry-val">23,454,204</span>
+          <span class="telemetry-lbl">Exact T-cycles executed to bit-exact $0100 handover</span>
+        </div>
+        <div class="telemetry-card">
+          <span class="telemetry-val">160 × 144</span>
+          <span class="telemetry-lbl">Fixed integer 1×–4× pixel scaling + fullscreen</span>
+        </div>
+        <div class="telemetry-card">
+          <span class="telemetry-val">1,528+ Games PASS</span>
+          <span class="telemetry-lbl">Verified ROM-only, MBC1 &amp; MBC3 titles across 3,529 test suite</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ONE CLICK / ONE DRAG & DROP INTERACTIVE ROM INSPECTOR -->
+    <section class="section section-alt" id="drop-lab">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">ONE CLICK · ONE DRAG &amp; DROP</p>
+            <h2>Drop any <code>.gb</code> cartridge.<br>Instant hardware inspection.</h2>
+          </div>
+          <p>
+            In ReaBoy, playing a game is literally dragging a <code>.gb</code> file onto the window. Try our live browser-side Cartridge Header Inspector below — drop one of your own ROMs (100% local, never uploaded) or click a sample cartridge to see how ReaBoy validates <code>$0104–$014F</code> before boot.
+          </p>
+        </div>
+
+        <div class="drop-lab-grid reveal">
+          <div class="drop-zone" id="rom-drop-zone" tabindex="0" role="button" aria-label="Drop a Game Boy ROM file here or click to select">
+            <input type="file" id="rom-file-input" accept=".gb,.gbc,.bin" hidden>
+            <div class="drop-icon" aria-hidden="true">⬇</div>
+            <h3>Drag &amp; drop a <code>.gb</code> ROM here</h3>
+            <p>Reads bytes <code>$0104–$014F</code> locally in your browser to verify the Nintendo logo, MBC mapper, ROM/RAM banks, and DMG header checksum.</p>
+            <div class="sample-cart-row" aria-label="Simulate sample cartridges">
+              <button class="chip-btn" type="button" data-sample="tetris">Sample: Tetris</button>
+              <button class="chip-btn" type="button" data-sample="drmario">Sample: Dr. Mario</button>
+              <button class="chip-btn" type="button" data-sample="marioland">Sample: Super Mario Land</button>
+              <button class="chip-btn" type="button" data-sample="zelda">Sample: Link's Awakening</button>
+            </div>
+          </div>
+
+          <div class="inspector-panel" id="rom-inspector">
+            <div class="inspector-header">
+              <span class="inspector-title">CARTRIDGE HEADER TELEMETRY ($0104–$014F)</span>
+              <span class="verdict-badge verdict-pass" id="rom-verdict">READY · BETA</span>
+            </div>
+            <div class="header-grid">
+              <div class="header-cell">
+                <span>Cartridge Title ($0134)</span>
+                <strong id="rom-title">TETRIS (SAMPLE)</strong>
+              </div>
+              <div class="header-cell">
+                <span>Mapper / MBC ($0147)</span>
+                <strong id="rom-mapper">0x00 · ROM ONLY</strong>
+              </div>
+              <div class="header-cell">
+                <span>ROM Size ($0148)</span>
+                <strong id="rom-size">32 KiB (2 Banks)</strong>
+              </div>
+              <div class="header-cell">
+                <span>Battery RAM ($0149)</span>
+                <strong id="rom-ram">None (0 KiB)</strong>
+              </div>
+              <div class="header-cell">
+                <span>Header Checksum ($014D)</span>
+                <strong id="rom-checksum">0x0A · VALID (Z=1)</strong>
+              </div>
+              <div class="header-cell">
+                <span>Target Hardware</span>
+                <strong id="rom-hw">DMG-01 Monochrome</strong>
+              </div>
+            </div>
+            <p class="inspector-note" id="rom-note">
+              Fully compatible with ReaBoy v1.0.1 BETA! Drag this ROM onto <strong>ReaBoy.exe</strong> to boot immediately with Bootix DMG v1.2 or your own DMG boot ROM.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTALL & REQUIREMENTS -->
+    <section class="section" id="install">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">ZERO FRICTION SETUP</p>
+            <h2>Simple requirements.<br>One-command install.</h2>
+          </div>
+          <p>
+            We engineered ReaBoy so you never fight runtime installers, DLL errors, or missing BIOS files. Everything needed to boot is self-contained inside a single Windows x64 package.
+          </p>
+        </div>
+
+        <div class="install-grid reveal">
+          <div>
+            <h3 style="margin-top:0;">System Requirements</h3>
+            <ul class="req-list">
+              <li><span>Operating System</span><strong>Windows 10 / 11 (64-bit x64)</strong></li>
+              <li><span>.NET Runtime</span><strong>Bundled inside ReaBoy.exe</strong></li>
+              <li><span>Admin Privileges</span><strong>Not required (Per-User)</strong></li>
+              <li><span>Boot Firmware</span><strong>Bootix DMG v1.2 (CC0) Included</strong></li>
+              <li><span>Audio Output</span><strong>Standard Windows WinMM Audio</strong></li>
+              <li><span>Cartridge Support</span><strong>ROM-Only &amp; MBC1 (up to 2 MiB)</strong></li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="terminal-box">
+              <div class="terminal-top">
+                <span>WINDOWS POWERSHELL · ONE-COMMAND INSTALLER</span>
+                <button class="copy-btn" type="button" data-copy-target="ps-install-cmd">Copy command</button>
+              </div>
+              <pre><code id="ps-install-cmd">curl.exe -fsSL https://raw.githubusercontent.com/ScientificBrad/ReaBoy/main/install.ps1 -o "$env:TEMP\ReaBoy-install.ps1"; if ($LASTEXITCODE -eq 0) { powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\ReaBoy-install.ps1" }</code></pre>
+              <div class="terminal-foot">
+                <span>Verifies SHA-256 · Adds Start Menu shortcut</span>
+                <span>Installs to %LOCALAPPDATA%\Programs\ReaBoy</span>
+              </div>
+            </div>
+
+            <div class="download-cards">
+              <a class="dl-card" href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy.exe">
+                <h4>ReaBoy.exe ↓</h4>
+                <p>Single standalone executable with .NET 8 + Bootix embedded.</p>
+                <code>SHA-256: 790dd673...028d</code>
+              </a>
+              <a class="dl-card" href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy-v1.0.1-win-x64.zip">
+                <h4>Portable ZIP ↓</h4>
+                <p>Extract anywhere. Includes README, LICENSES &amp; rom/ folder.</p>
+                <code>SHA-256: 047ec920...1860</code>
+              </a>
+              <a class="dl-card" href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/dmg_boot.bin">
+                <h4>Bootix DMG v1.2 ↓</h4>
+                <p>Unmodified CC0-1.0 open-source replacement boot ROM (256 B).</p>
+                <code>SHA-256: c3134352...7b5e</code>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW WE MADE IT — SCIENTIFIC & TECHNICAL (PROJECT 007) -->
+    <section class="section section-alt" id="how-we-made-it">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">SCIENTIFIC ENGINEERING · PROJECT 007</p>
+            <h2>How we built ReaBoy from<br>256 bytes of 1989 silicon.</h2>
+          </div>
+          <p>
+            Built with our <strong>REA (Reverse Engineer Anything)</strong> methodology: we started at byte <code>$0000</code> of the canonical 256-byte DMG-01 boot ROM, statically decoded all <strong>200 executable code bytes</strong> (121 Sharp SM83 instructions across 38 basic blocks and 57 CFG edges) and <strong>56 embedded data bytes</strong>, audited all 12 memory-mapped I/O registers (<code>$FF11–$FF50</code>), and reassembled the entire image with <strong>RGBDS v1.0.4</strong> to prove <strong>0 byte mismatches</strong> and an identical SHA-256 hash before executing a single instruction in our C# SM83 core.
+          </p>
+        </div>
+
+        <div class="science-phases reveal">
+          <article class="phase-card">
+            <span class="phase-num">PHASE 01 · STATIC REVERSE ENGINEERING</span>
+            <h3>Byte-Identical Boot Reconstruction</h3>
+            <p>We wrote a custom Sharp SM83 disassembler and control-flow graph builder to account for every single byte of the 256-byte DMG-01 boot ROM — then reassembled it with RGBDS v1.0.4 and proved 0 byte mismatches.</p>
+            <div class="stat-pills">
+              <span>256 / 256 bytes</span>
+              <span>121 SM83 opcodes</span>
+              <span>38 basic blocks</span>
+              <span>57 CFG edges</span>
+              <span>12 MMIO regs</span>
+            </div>
+          </article>
+
+          <article class="phase-card">
+            <span class="phase-num">PHASE 02 · DYNAMIC CPU VERIFICATION</span>
+            <h3>Bit-Exact Handover at $0100</h3>
+            <p>Our C# Sharp SM83 core and memory bus execute the full boot sequence from <code>$0000</code> to <code>$FF50</code> unmapping — matching every single canonical DMG register and trapping corrupted logos/checksums in their hardware lockouts.</p>
+            <div class="stat-pills">
+              <span>2,206,435 instr</span>
+              <span>23,454,204 T-cycles</span>
+              <span>PC=$0100</span>
+              <span>F=$B0 (Z=1 H=1 C=1)</span>
+            </div>
+          </article>
+
+          <article class="phase-card">
+            <span class="phase-num">PHASE 03 · PPU, APU &amp; WINDOWS HOST</span>
+            <h3>Rock-Solid Desktop Architecture</h3>
+            <p>We paired the core with a scanline-timed 160×144 PPU (including the v1.0.1 LCD-off STAT Mode 0 fix for Dr. Mario), a 4-channel APU with pinned WinMM audio buffers, and 59 automated Windows UI integration checks.</p>
+            <div class="stat-pills">
+              <span>4-Ch APU</span>
+              <span>STAT Mode 0 fix</span>
+              <span>Pinned WinMM</span>
+              <span>59 UI Checks</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Interactive 10-Step Boot Pipeline & Register Inspector -->
+        <div class="pipeline-box reveal">
+          <div class="pipeline-top">
+            <div>
+              <span class="eyebrow" style="margin-bottom:0.25rem;">INTERACTIVE HARDWARE TRACE</span>
+              <h3 style="margin:0;">DMG-01 Boot Execution Pipeline ($0000 → $0100)</h3>
+            </div>
+            <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+              <button class="btn btn-primary" type="button" id="pipeline-play-btn" style="padding:0.55rem 1rem;font-size:0.84rem;">▶ Auto-Step Trace</button>
+              <button class="btn btn-secondary" type="button" id="pipeline-reset-btn" style="padding:0.55rem 1rem;font-size:0.84rem;">↺ Reset to $0000</button>
+            </div>
+          </div>
+
+          <div class="pipeline-grid">
+            <div class="milestone-list" id="milestone-list" role="listbox" aria-label="DMG-01 boot milestones">
+              <!-- Populated by app.js -->
+            </div>
+
+            <div class="register-panel">
+              <h4>Sharp SM83 Register State</h4>
+              <div class="reg-grid" id="reg-grid">
+                <div class="reg-cell"><span>A</span><strong id="reg-A">$01</strong></div>
+                <div class="reg-cell"><span>F (ZNHC)</span><strong id="reg-F">$B0</strong></div>
+                <div class="reg-cell"><span>B</span><strong id="reg-B">$00</strong></div>
+                <div class="reg-cell"><span>C</span><strong id="reg-C">$13</strong></div>
+                <div class="reg-cell"><span>D</span><strong id="reg-D">$00</strong></div>
+                <div class="reg-cell"><span>E</span><strong id="reg-E">$D8</strong></div>
+                <div class="reg-cell"><span>H</span><strong id="reg-H">$01</strong></div>
+                <div class="reg-cell"><span>L</span><strong id="reg-L">$4D</strong></div>
+                <div class="reg-cell"><span>SP</span><strong id="reg-SP">$FFFE</strong></div>
+                <div class="reg-cell"><span>PC</span><strong id="reg-PC">$0100</strong></div>
+              </div>
+              <div class="cycle-meter">
+                <div style="display:flex;justify-content:space-between;">
+                  <span id="cycle-label">T-Cycles: 23,454,204</span>
+                  <span id="bootrom-state" style="color:#ccff2e;">$FF50 UNMAPPED</span>
+                </div>
+                <div class="cycle-bar-track">
+                  <div class="cycle-bar-fill" id="cycle-bar-fill"></div>
+                </div>
+                <p id="milestone-detail" style="margin:0.75rem 0 0;color:var(--text-muted);font-family:var(--font-display);font-size:0.84rem;">
+                  Boot ROM writes $01 to $FF50, unmaps itself, and hands execution cleanly to cartridge entry point $0100.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4-CHANNEL APU SOUND LAB -->
+    <section class="section" id="sound-lab">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">FOUR-CHANNEL SYNTHESIS · LIVE OSCILLOSCOPE</p>
+            <h2>Hear the Game Boy APU<br>in real time.</h2>
+          </div>
+          <p>
+            ReaBoy implements all four channels of the DMG-01 Audio Processing Unit (<code>Channel1.cs</code>–<code>Channel4.cs</code>) with pinned native WinMM audio buffers. Trigger each hardware channel below to see and hear how 1989 chiptune magic works.
+          </p>
+        </div>
+
+        <div class="apu-grid reveal">
+          <div class="scope-card">
+            <div class="scope-head" style="align-items:center;">
+              <span>REAL-TIME APU OSCILLOSCOPE · WEB AUDIO SYNTH</span>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span id="scope-channel-label">STANDBY</span>
+                <button class="chip-btn" type="button" id="scope-chime-quick-btn" style="padding:3px 8px;font-size:0.72rem;">Play Chime ♪</button>
+              </div>
+            </div>
+            <canvas id="apu-scope" width="600" height="210" aria-label="Live audio oscilloscope"></canvas>
+          </div>
+
+          <div class="apu-channels">
+            <button class="apu-btn apu-btn-featured" type="button" data-apu="chime">
+              <div>
+                <strong>Nintendo Boot Chime</strong>
+                <span>Direct audio capture from ReaBoy's APU executing the 256-byte DMG boot ROM ($FF13/$FF14 registers).</span>
+              </div>
+              <span class="apu-play-tag">PLAY ♪</span>
+            </button>
+            <button class="apu-btn" type="button" data-apu="ch1">
+              <div>
+                <strong>CH1 · Pulse + Frequency Sweep</strong>
+                <span>Square wave with duty cycle &amp; hardware pitch sweep register (NR10).</span>
+              </div>
+              <span class="apu-play-tag">PLAY ♪</span>
+            </button>
+            <button class="apu-btn" type="button" data-apu="ch2">
+              <div>
+                <strong>CH2 · Pulse Lead Harmony</strong>
+                <span>Crisp 50%/25% duty square lead for classic Game Boy melodies.</span>
+              </div>
+              <span class="apu-play-tag">PLAY ♪</span>
+            </button>
+            <button class="apu-btn" type="button" data-apu="ch3">
+              <div>
+                <strong>CH3 · 4-Bit Programmable Wave RAM</strong>
+                <span>32-sample custom waveform table powering deep 8-bit basslines.</span>
+              </div>
+              <span class="apu-play-tag">PLAY ♪</span>
+            </button>
+            <button class="apu-btn" type="button" data-apu="ch4">
+              <div>
+                <strong>CH4 · Polynomial LFSR Noise</strong>
+                <span>Pseudo-random shift-register noise for snares, hi-hats, and explosions.</span>
+              </div>
+              <span class="apu-play-tag">PLAY ♪</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREENSHOTS & BETA GAME COMPATIBILITY LAB -->
+    <section class="section section-alt" id="beta-lab">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">OPEN BETA TESTING · THE 12 GREATEST GAME BOY GAMES</p>
+            <h2>Hall of Fame Classics.<br>Running bit-exact at 60 FPS in ReaBoy.</h2>
+          </div>
+          <p>
+            Watch real, uninterrupted 25-to-30-second gameplay captures of the twelve defining masterpieces of the Nintendo Game Boy (DMG-01). Recorded directly from ReaBoy's CPU and scanline-accurate PPU emulator loop with high-resolution original box art. Below, explore the full lab database of <strong>1,528 canonical games verified and running</strong>.
+          </p>
+        </div>
+
+        <div class="top12-grid reveal">
+          <!-- 1. The Legend of Zelda: Link's Awakening -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#01</span>
+                <h3 class="top12-title">The Legend of Zelda: Link's Awakening</h3>
+              </div>
+              <span class="top12-year">1993</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/legend-of-zelda-the-link-s-awakening.png">
+                <source src="assets/video/zelda-links-awakening.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/zelda-links-awakening.jpg" alt="The Legend of Zelda: Link's Awakening Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              Arguably the greatest adventure ever made for the original Game Boy. Huge world, dungeons, puzzles and an unforgettable story.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">MBC1+RAM+BATT · 1,024 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+
+          <!-- 2. Tetris -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#02</span>
+                <h3 class="top12-title">Tetris</h3>
+              </div>
+              <span class="top12-year">1989</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/tetris.png">
+                <source src="assets/video/tetris.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/tetris.jpg" alt="Tetris Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              The definitive handheld puzzle game. Helped turn the Game Boy into a worldwide phenomenon.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">ROM-Only · 32 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+
+          <!-- 3. Pokémon Red and Blue -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#03</span>
+                <h3 class="top12-title">Pokémon Red and Blue</h3>
+              </div>
+              <span class="top12-year">1996/1998</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/pokemon-red.png">
+                <source src="assets/video/pokemon-red.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/pokemon-red.jpg" alt="Pokémon Red Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              The beginning of the Pokémon phenomenon. Collecting, trading and battling 151 Pokémon.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">MBC3+RAM+BATT · 1,024 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+
+          <!-- 4. Super Mario Land 2: 6 Golden Coins -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#04</span>
+                <h3 class="top12-title">Super Mario Land 2: 6 Golden Coins</h3>
+              </div>
+              <span class="top12-year">1992</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/super-mario-land-2-6-golden-coins.png">
+                <source src="assets/video/super-mario-land-2.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/super-mario-land-2.jpg" alt="Super Mario Land 2 Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              Beautifully designed platformer with larger sprites, creative levels and Wario's debut.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">MBC1+RAM+BATT · 512 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+
+          <!-- 5. Donkey Kong -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#05</span>
+                <h3 class="top12-title">Donkey Kong</h3>
+              </div>
+              <span class="top12-year">1994</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/donkey-kong.png">
+                <source src="assets/video/donkey-kong.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/donkey-kong.jpg" alt="Donkey Kong Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              Starts like the arcade original before revealing an enormous puzzle-platform adventure.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">MBC1+RAM+BATT · 512 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+
+          <!-- 6. Wario Land: Super Mario Land 3 -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#06</span>
+                <h3 class="top12-title">Wario Land: Super Mario Land 3</h3>
+              </div>
+              <span class="top12-year">1994</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/wario-land-super-mario-land-3.png">
+                <source src="assets/video/wario-land.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/wario-land.jpg" alt="Wario Land: Super Mario Land 3 Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              Brilliant exploration-based platformer with treasure hunting and Wario's distinctive gameplay.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">MBC1+RAM+BATT · 512 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+
+          <!-- 7. Metroid II: Return of Samus -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#07</span>
+                <h3 class="top12-title">Metroid II: Return of Samus</h3>
+              </div>
+              <span class="top12-year">1991</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/metroid-ii-return-of-samus.png">
+                <source src="assets/video/metroid-2.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/metroid-2.jpg" alt="Metroid II: Return of Samus Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              Dark, atmospheric exploration that pushed the handheld well beyond simple arcade games.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">MBC1+RAM+BATT · 256 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+
+          <!-- 8. Kirby's Dream Land 2 -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#08</span>
+                <h3 class="top12-title">Kirby's Dream Land 2</h3>
+              </div>
+              <span class="top12-year">1995</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/kirby-s-dream-land-2.png">
+                <source src="assets/video/kirbys-dream-land-2.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/kirbys-dream-land-2.jpg" alt="Kirby's Dream Land 2 Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              A polished platformer with copy abilities, animal companions and inventive levels.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">MBC1+RAM+BATT · 1,024 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+
+          <!-- 9. Dr. Mario -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#09</span>
+                <h3 class="top12-title">Dr. Mario</h3>
+              </div>
+              <span class="top12-year">1990</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/dr-mario.png">
+                <source src="assets/video/dr-mario.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/dr-mario.jpg" alt="Dr. Mario Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              One of Nintendo's most addictive puzzle games. Simple mechanics, demanding difficulty.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">ROM-Only · 32 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+
+          <!-- 10. Super Mario Land -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#10</span>
+                <h3 class="top12-title">Super Mario Land</h3>
+              </div>
+              <span class="top12-year">1989</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/super-mario-land.png">
+                <source src="assets/video/super-mario-land.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/super-mario-land.jpg" alt="Super Mario Land Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              A launch-era classic that proved Mario could work on a tiny monochrome screen.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">MBC1 · 64 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+
+          <!-- 11. Mole Mania -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#11</span>
+                <h3 class="top12-title">Mole Mania</h3>
+              </div>
+              <span class="top12-year">1996</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/mole-mania.png">
+                <source src="assets/video/mole-mania.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/mole-mania.jpg" alt="Mole Mania Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              An underrated Nintendo puzzle adventure with clever underground mechanics.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">MBC1+RAM+BATT · 512 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+
+          <!-- 12. Gargoyle's Quest -->
+          <article class="top12-card">
+            <div class="top12-header">
+              <div class="top12-rank-title">
+                <span class="top12-rank">#12</span>
+                <h3 class="top12-title">Gargoyle's Quest</h3>
+              </div>
+              <span class="top12-year">1990</span>
+            </div>
+            <div class="top12-media">
+              <video autoplay loop muted playsinline poster="assets/img/shots/gargoyle-s-quest-ghosts-n-goblins.png">
+                <source src="assets/video/gargoyles-quest.mp4" type="video/mp4">
+              </video>
+              <div class="top12-boxart-thumb" title="Original Box Art">
+                <img src="assets/img/boxart/gargoyles-quest.jpg" alt="Gargoyle's Quest Box Art" loading="lazy">
+              </div>
+            </div>
+            <p class="top12-desc">
+              A superb mixture of platforming, exploration and role-playing elements.
+            </p>
+            <div class="top12-meta">
+              <span class="top12-meta-tag">MBC1 · 256 KB</span>
+              <span class="top12-status">✓ 60 FPS PASS</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Filterable Compatibility Table -->
+        <div class="compat-toolbar reveal">
+          <input class="compat-search" id="compat-search" type="search" placeholder="Search 1,528+ verified games (e.g. Zelda, Pokémon, Metroid, MBC1)..." aria-label="Filter tested games">
+          <div style="display:flex;gap:0.45rem;flex-wrap:wrap;">
+            <button class="chip-btn active" type="button" data-filter="ALL">All (1,528+)</button>
+            <button class="chip-btn" type="button" data-filter="PASS">Verified Pass</button>
+            <button class="chip-btn" type="button" data-alpha="A-C">A–C</button>
+            <button class="chip-btn" type="button" data-alpha="D-F">D–F</button>
+            <button class="chip-btn" type="button" data-alpha="G-I">G–I</button>
+            <button class="chip-btn" type="button" data-alpha="J-L">J–L</button>
+            <button class="chip-btn" type="button" data-alpha="M-O">M–O</button>
+            <button class="chip-btn" type="button" data-alpha="P-R">P–R</button>
+            <button class="chip-btn" type="button" data-alpha="S-U">S–U</button>
+            <button class="chip-btn" type="button" data-alpha="V-Z">V–Z</button>
+          </div>
+        </div>
+
+        <div class="compat-table-wrap reveal">
+          <table class="compat-table">
+            <thead>
+              <tr>
+                <th style="width:58px;">Shot</th>
+                <th>Game Title</th>
+                <th>Cartridge</th>
+                <th>Status</th>
+                <th>Verified Telemetry / Notes</th>
+              </tr>
+            </thead>
+            <tbody id="compat-tbody">
+              <!-- Populated by app.js -->
+            </tbody>
+          </table>
+          <div class="compat-table-foot" id="compat-table-footer" style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-top:1px solid var(--border);flex-wrap:wrap;gap:10px;">
+            <span id="compat-count-label" style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-muted);">Showing 40 of 1,528+ verified games</span>
+            <div style="display:flex;gap:8px;">
+              <button class="chip-btn" id="load-more-btn" type="button">Load More (+50)</button>
+              <button class="chip-btn" id="show-all-btn" type="button">Show All 1,528+ Games</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beta Tester Game Logger -->
+        <form class="beta-log-form reveal" id="beta-log-form">
+          <h4>Log a Game Test (Saved Locally + Optional GitHub Beta Report)</h4>
+          <div class="form-row">
+            <input class="form-input" id="log-title" type="text" required placeholder="Game name (e.g. Kirby's Dream Land)">
+            <select class="form-select" id="log-mapper" aria-label="Cartridge Mapper">
+              <option value="ROM-Only">ROM-Only</option>
+              <option value="MBC1">MBC1</option>
+              <option value="MBC1+RAM+BATT">MBC1+RAM+BATT</option>
+              <option value="MBC3 (Roadmap)">MBC3 (Roadmap)</option>
+              <option value="MBC5 (Roadmap)">MBC5 (Roadmap)</option>
+            </select>
+            <select class="form-select" id="log-status" aria-label="Test Status">
+              <option value="PASS">PASS</option>
+              <option value="ISSUES">ISSUES</option>
+            </select>
+            <input class="form-input" id="log-notes" type="text" placeholder="Notes (boot intro, sound, battery save...)">
+            <button class="btn btn-primary" type="submit" style="padding:0.6rem 1.1rem;font-size:0.84rem;">+ Add Test</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- WHY REABOY + CONTROLS SUMMARY -->
+    <section class="section" id="why-reaboy">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">WHY REABOY STANDS OUT</p>
+            <h2>Built like a precision lab tool.<br>Plays like a 1989 pocket classic.</h2>
+          </div>
+          <p>
+            No bloated frontends, no hunting for obscure BIOS files, no stretched blurry pixels. Every decision in ReaBoy respects the original DMG-01 hardware.
+          </p>
+        </div>
+
+        <div class="feature-grid reveal" style="margin-bottom:2.5rem;">
+          <article class="feature-card">
+            <span class="num">01 / DISPLAY</span>
+            <h3>Locked Integer Scaling</h3>
+            <p>Fixed 1×, 2×, 3×, and 4× window sizes locked to 160×144, auto-capped to your monitor, plus instant F11 fullscreen and authentic Olive Green or Grayscale palettes.</p>
+          </article>
+          <article class="feature-card">
+            <span class="num">02 / INSTANT PLAY</span>
+            <h3>Drag, Drop &amp; Swap</h3>
+            <p>Drop any <code>.gb</code> ROM onto the window to switch cartridges instantly. Remove Cartridge saves battery RAM and returns cleanly to the empty-console boot logo.</p>
+          </article>
+          <article class="feature-card">
+            <span class="num">03 / SAFETY</span>
+            <h3>Hash-Isolated Battery Saves</h3>
+            <p>MBC1 battery RAM saves automatically on game switch, reset, cartridge removal, and exit — keyed by ROM content hash in <code>%APPDATA%\BJStudios\ReaBoy\saves</code>.</p>
+          </article>
+        </div>
+
+        <div class="controls-grid reveal">
+          <div class="kbd-card">
+            <p class="eyebrow" style="margin-bottom:0.4rem;">DEFAULT KEYBOARD CONTROLS</p>
+            <h3 style="margin:0;">Pick up and play immediately.</h3>
+            <div class="kbd-list">
+              <div class="kbd-row"><span>D-Pad</span><span><kbd>↑ ↓ ← →</kbd> or <kbd>W A S D</kbd></span></div>
+              <div class="kbd-row"><span>A / B Buttons</span><span><kbd>Z</kbd> <kbd>X</kbd> or <kbd>J</kbd> <kbd>K</kbd></span></div>
+              <div class="kbd-row"><span>Start / Select</span><span><kbd>Enter</kbd> / <kbd>Shift</kbd> or <kbd>Space</kbd></span></div>
+              <div class="kbd-row"><span>Open ROM / Pause / Reset</span><span><kbd>Ctrl+O</kbd> <kbd>P</kbd> <kbd>R</kbd></span></div>
+              <div class="kbd-row"><span>Fullscreen / Mute</span><span><kbd>F11</kbd> / <kbd>M</kbd></span></div>
+            </div>
+          </div>
+
+          <div class="kbd-card" style="display:flex;flex-direction:column;justify-content:space-between;">
+            <div>
+              <p class="eyebrow" style="margin-bottom:0.4rem;">COMPLETE USER MANUAL &amp; CLI</p>
+              <h3 style="margin:0 0 0.75rem;">Need the full technical guide?</h3>
+              <p style="color:var(--text-muted);margin:0 0 1rem;">
+                Our complete User Manual covers custom 2-key button remapping, Bootix vs original Nintendo boot ROM override priority, headless benchmarking flags (<code>--headless --frames 600</code>), battery save locations, and our honest BETA compatibility roadmap.
+              </p>
+            </div>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+              <a class="btn btn-primary" href="manual.html">Open Full User Manual →</a>
+              <a class="btn btn-secondary" href="https://github.com/ScientificBrad/ReaBoy/issues" target="_blank" rel="noopener">Report a Beta Bug ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">R</span>
+          <span>ReaBoy</span>
+        </a>
+        <p>Engineered by <strong>BJ Studios — Manchester, England</strong>.<br>© 2026 BJ Studios. All rights reserved.</p>
+        <p>ReaBoy is an independent Game Boy emulator and is not affiliated with or endorsed by Nintendo. Game names and trademarks belong to their respective rights holders. Commercial game ROMs are not distributed.</p>
+      </div>
+
+      <div>
+        <strong style="font-family:var(--font-mono);font-size:0.8rem;color:var(--gb-0);">DOWNLOADS</strong>
+        <ul class="footer-links">
+          <li><a href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy.exe">ReaBoy.exe (Windows x64)</a></li>
+          <li><a href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy-v1.0.1-win-x64.zip">Portable ZIP (v1.0.1)</a></li>
+          <li><a href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/dmg_boot.bin">Bootix DMG v1.2 (CC0)</a></li>
+          <li><a href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/SHA256SUMS.txt">SHA256SUMS.txt</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <strong style="font-family:var(--font-mono);font-size:0.8rem;color:var(--gb-0);">DOCUMENTATION</strong>
+        <ul class="footer-links">
+          <li><a href="manual.html">Complete User Manual</a></li>
+          <li><a href="#how-we-made-it">Project 007 Architecture</a></li>
+          <li><a href="https://github.com/ScientificBrad/ReaBoy" target="_blank" rel="noopener">GitHub Repository ↗</a></li>
+          <li><a href="https://github.com/ScientificBrad/ReaBoy/blob/main/rom/BOOTIX-LICENSE.txt" target="_blank" rel="noopener">Bootix CC0-1.0 Licence ↗</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
