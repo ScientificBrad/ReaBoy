@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ReaBoy v2.0.0 — Interactive Emulation Lab & Hardware Visualizer
+   ReaBoy v1.0.1 BETA — Interactive Emulation Lab & Hardware Visualizer
    BJ Studios — Manchester, England
    ========================================================================== */
 
@@ -392,7 +392,7 @@
 
     ctx.fillStyle = '#306230';
     ctx.font = 'bold 8px monospace';
-    ctx.fillText('v2.0.0 · DMG & CGB', w / 2, bootY + 14);
+    ctx.fillText('v1.0.1 BETA · DMG-01', w / 2, bootY + 14);
 
     if (bootY >= 58) {
       ctx.fillStyle = '#0f380f';
@@ -550,9 +550,8 @@
     0x1d: { name: '0x1D · MBC5 + RUMBLE + RAM', supported: 'PASS', note: 'Fully supported.' },
     0x1e: { name: '0x1E · MBC5 + RUMBLE + RAM + BATT', supported: 'PASS', note: 'Fully supported with rumble and battery saves.' },
     0x22: { name: '0x22 · MBC7 + ACCEL + EEPROM', supported: 'PASS', note: 'Fully supported with accelerometer tilt and 93LC56 SPI EEPROM (Kirby\'s Tilt \'n\' Tumble).' },
-    0xfd: { name: '0xFD · TAMA5 (UNSUPPORTED)', supported: 'ROADMAP', note: 'Bandai TAMA5 is not supported.' },
-    0xfe: { name: '0xFE · HuC3 + RTC + RAM', supported: 'PASS', note: 'Fully supported with HuC3 command parser and RTC (Pocket Family GB2).' },
-    0xff: { name: '0xFF · HuC1 + RAM + BATTERY', supported: 'PASS', note: 'Fully supported with infrared transceiver emulation.' },
+    0xfd: { name: '0xFD · HuC3 + EEPROM + RTC', supported: 'PASS', note: 'Fully supported with HuC3 command parser and RTC (Pocket Family GB2).' },
+    0xfe: { name: '0xFE · HuC1 + RAM + BATTERY', supported: 'PASS', note: 'Fully supported with infrared transceiver emulation.' },
   };
 
   const RAM_SIZES = {
@@ -621,7 +620,7 @@
     const mbcInfo = MBC_MAP[mapperCode] || {
       name: `0x${mapperCode.toString(16).toUpperCase().padStart(2, '0')} · UNSUPPORTED MBC`,
       supported: 'ROADMAP',
-      note: 'This cartridge mapper is not supported in ReaBoy v2.0.0 (ROM-Only, MBC1, MBC2, MBC3, MBC5, MBC7, HuC1 & HuC3 are supported).',
+      note: 'This cartridge mapper is not yet supported in ReaBoy v1.0.1 BETA (ROM-Only & MBC1 supported).',
     };
 
     const romCode = bytes[0x148];
@@ -684,7 +683,7 @@
       checksum: '0x58 · VALID (Z=1)',
       hw: 'DMG-01 Monochrome',
       verdict: 'PASS',
-      note: 'Fixed in ReaBoy v2.0.0! LCD-off STAT now correctly reports Mode 0 so setup-screen transitions complete cleanly (3,600 frames PASS).',
+      note: 'Fixed in ReaBoy v1.0.1 BETA! LCD-off STAT now correctly reports Mode 0 so setup-screen transitions complete cleanly (3,600 frames PASS).',
     },
     marioland: {
       title: 'SUPER MARIO LAND',
@@ -694,7 +693,7 @@
       checksum: '0x2C · VALID (Z=1)',
       hw: 'DMG-01 Monochrome',
       verdict: 'PASS',
-      note: 'Verified playable in ReaBoy v2.0.0 (World 1-1 capture, 3,600 frames PASS, PC=$0297, LCDC=$C3).',
+      note: 'Verified playable in ReaBoy v1.0.1 BETA (World 1-1 capture, 3,600 frames PASS, PC=$0297, LCDC=$C3).',
     },
     zelda: {
       title: "ZELDA (LINK'S AWAKENING)",
@@ -1141,7 +1140,7 @@
       const title = $('#log-title').value.trim();
       const mapper = $('#log-mapper').value;
       const status = $('#log-status').value;
-      const notes = $('#log-notes').value.trim() || 'Logged locally in ReaBoy v2.0.0 Compatibility Lab.';
+      const notes = $('#log-notes').value.trim() || 'Logged locally in ReaBoy v1.0.1 BETA Compatibility Lab.';
       if (!title) return;
 
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -1302,4 +1301,22 @@
     gamesList.slice(0, 5).forEach(g => preload(g.shot));
     startTimer();
   }
+
+  // Showcase Filter Logic (18 Best Handheld Masterpieces)
+  window.filterShowcase = function (filter) {
+    const items = document.querySelectorAll('.showcase-item');
+    const tabs = document.querySelectorAll('.showcase-filter-tabs .chip-btn');
+    tabs.forEach(t => t.classList.remove('active'));
+    const activeTab = document.getElementById('tab-' + filter);
+    if (activeTab) activeTab.classList.add('active');
+
+    items.forEach(item => {
+      const platform = item.getAttribute('data-platform');
+      if (filter === 'all' || platform === filter) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  };
 })();
