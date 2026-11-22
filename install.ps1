@@ -3,6 +3,7 @@ param(
     [string]$InstallDirectory = (Join-Path $env:LOCALAPPDATA 'Programs\ReaBoy'),
     [switch]$NoLaunch,
     [switch]$NoShortcut,
+    [switch]$Force,
     [string]$PackagePath,
     [string]$ExpectedSha256
 )
@@ -58,6 +59,15 @@ try {
     }
     $InstallDirectory = [IO.Path]::GetFullPath($InstallDirectory)
     $targetExe = Join-Path $InstallDirectory 'ReaBoy.exe'
+    $incomingVersion = [Version](Get-Item -LiteralPath $executables[0].FullName).VersionInfo.FileVersion
+    if (-not $Force -and (Test-Path -LiteralPath $targetExe -PathType Leaf)) {
+        try {
+            $installedVersion = [Version](Get-Item -LiteralPath $targetExe).VersionInfo.FileVersion
+            if ($incomingVersion -lt $installedVersion) {
+                throw ("Refusing to downgrade installed ReaBoy v$installedVersion to older package v$incomingVersion. Pass -Force to override.")
+            }
+        } catch [System.ArgumentException] { }
+    }
     foreach ($process in @(Get-Process -Name ReaBoy -ErrorAction SilentlyContinue)) {
         if ($process.Path -eq $targetExe) {
             if (-not $process.CloseMainWindow() -or -not $process.WaitForExit(10000)) { throw 'Close ReaBoy and run the installer again.' }
@@ -82,10 +92,10 @@ try {
         $shortcut = $shell.CreateShortcut((Join-Path $programs 'ReaBoy.lnk'))
         $shortcut.TargetPath = $targetExe
         $shortcut.WorkingDirectory = $InstallDirectory
-        $shortcut.Description = 'ReaBoy - Game Boy emulator by BJ Studios'
+        $shortcut.Description = 'ReaBoy - Game Boy & Game Boy Color Emulator for Windows (BJ Studios)'
         $shortcut.Save()
     }
-    Write-Host ('Installed ReaBoy to ' + $InstallDirectory)
+    Write-Host ('Installed ReaBoy v' + $incomingVersion + ' to ' + $InstallDirectory)
     Write-Host 'Your settings, saves and existing boot firmware are preserved.'
     if (-not $NoLaunch) { Start-Process -FilePath $targetExe -WorkingDirectory $InstallDirectory }
 } finally {
