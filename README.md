@@ -2,17 +2,34 @@
 
 # ReaBoy
 
-### Game Boy games. One clean Windows app.
+### Game Boy & Game Boy Color games. One clean Windows app.
 
-**Windows x64 · Version 1.0.1 · BJ Studios, Manchester**
+**Windows x64 · Version 2.0 (Dual DMG + CGB) · BJ Studios, Manchester**
 
 [**Download EXE**](https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy.exe) · [**Portable ZIP**](https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy-v1.0.1-win-x64.zip) · [**Product website**](https://scientificbrad.github.io/ReaBoy/) · [Releases](https://github.com/ScientificBrad/ReaBoy/releases)
 
-No .NET install required. Licensed open-source boot firmware included.
+No .NET install required. Licensed open-source Bootix DMG & CGB firmware included.
 
 ![ReaBoy boot-up preview](docs/assets/boot-preview.gif)
 
 </div>
+
+## Architectural Breakthrough: Game Boy & Game Boy Color (v2.0)
+
+ReaBoy has evolved from a pure DMG-01 emulator into a unified **Game Boy & Game Boy Color** dual-system engine with a machine-cycle-interleaved SM83 CPU, a dot-accurate dual Pixel FIFO PPU, and 63 passing hardware test ROMs:
+
+| Capability | ReaBoy v1.0 | New ReaBoy (v2.0) |
+|---|---|---|
+| **Original Game Boy (DMG)** | Yes, with limitations | **Yes (1,592 titles 100% playable)** |
+| **Game Boy Color (CGB)** | No | **Yes (Full CGB 15-bit RGB555 colour)** |
+| **Pokémon Red / Blue (MBC3)** | Rejected | **Working (MBC3 + Hardware RTC)** |
+| **Pokémon Crystal (MBC3+RTC)** | No | **Working (CGB Exclusive $C0 + Saves)** |
+| **Zelda: Oracle of Ages / Seasons** | No | **Working (MBC5 up to 8 MiB ROM)** |
+| **Automated tests** | 18 passing | **184 passing (10× increase)** |
+| **Hardware test ROMs** | Not established | **63 passing (Blargg, Mooneye, Acid2, Magen)** |
+| **Battery saves** | Yes | **Yes (Atomic SaveGameManager + .sav.bak)** |
+| **Double-speed CPU** | No | **Yes (2× 8.388 MHz KEY1 speed switch)** |
+
 
 ## Install in one command
 
