@@ -1,4 +1,4 @@
-ReaBoy v1.0.1
+ReaBoy v2.0.0
 Copyright (c) 2026 BJ Studios. All rights reserved.
 Manchester, England.
 
@@ -6,7 +6,7 @@ No open-source licence is granted to the ReaBoy application or its source code b
 Contact BJ Studios for permission to redistribute or modify the application.
 
 Bundled Microsoft .NET components remain subject to the complete licences and notices below.
-Nintendo and Game Boy names belong to their respective owners.
+Nintendo, Game Boy, and Game Boy Color names belong to their respective owners.
 No commercial game ROMs or proprietary Nintendo boot firmware are included.
 
 
