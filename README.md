@@ -14,21 +14,22 @@ No .NET install required. Licensed open-source Bootix DMG & CGB firmware include
 
 </div>
 
-## Architectural Breakthrough: Game Boy & Game Boy Color (v2.0)
+## Dual Hardware Architecture: Game Boy &amp; Game Boy Color
 
-ReaBoy has evolved from a pure DMG-01 emulator into a unified **Game Boy & Game Boy Color** dual-system engine with a machine-cycle-interleaved SM83 CPU, a dot-accurate dual Pixel FIFO PPU, and 63 passing hardware test ROMs:
+ReaBoy runs both original Game Boy (DMG) and Game Boy Color (CGB) titles with machine-cycle SM83 CPU interleaving, a dot-accurate dual Pixel FIFO PPU, and 63 passing hardware test ROMs:
 
-| Capability | ReaBoy v1.0 | New ReaBoy (v2.0) |
+| Hardware Capability | Original Game Boy (DMG) | Game Boy Color (CGB) |
 |---|---|---|
-| **Original Game Boy (DMG)** | Yes, with limitations | **Yes (1,592 titles 100% playable)** |
-| **Game Boy Color (CGB)** | No | **Yes (Full CGB 15-bit RGB555 colour)** |
-| **Pokémon Red / Blue (MBC3)** | Rejected | **Working (MBC3 + Hardware RTC)** |
-| **Pokémon Crystal (MBC3+RTC)** | No | **Working (CGB Exclusive $C0 + Saves)** |
-| **Zelda: Oracle of Ages / Seasons** | No | **Working (MBC5 up to 8 MiB ROM)** |
-| **Automated tests** | 18 passing | **184 passing (10× increase)** |
-| **Hardware test ROMs** | Not established | **63 passing (Blargg, Mooneye, Acid2, Magen)** |
-| **Battery saves** | Yes | **Yes (Atomic SaveGameManager + .sav.bak)** |
-| **Double-speed CPU** | No | **Yes (2× 8.388 MHz KEY1 speed switch)** |
+| **Hardware Model** | DMG-01 Monochrome (1989) | CGB-001 Dual-Mode &amp; CGB-Only |
+| **CPU Frequency** | Sharp SM83 @ 4.194 MHz (1×) | 8.388 MHz (2× KEY1 Speed Switch) |
+| **Video &amp; Palettes** | 4-shade monochrome DMG palette | 15-Bit RGB555 (64 Custom Palettes) |
+| **Pixel Pipeline** | Dot-accurate scanline PPU | Dot-accurate Pixel FIFO (Acid2 0/23,040 Diff) |
+| **Memory Subsystems** | 8 KiB VRAM / 8 KiB WRAM | 16 KiB VRAM / 32 KiB Banked WRAM |
+| **DMA Controllers** | 160-M-cycle OAM DMA | HDMA / GDMA (H-Blank &amp; General DMA) |
+| **Commercial Game Library** | 1,592 Titles (100% Playable) | Dual &amp; CGB-Exclusive Library |
+| **Cartridge Mappers** | ROM-Only, MBC1, MBC2, MBC3 (+RTC) | MBC1, MBC2, MBC3, MBC5, MBC7 (tilt), HuC1/3 |
+| **Battery Save Persistence** | Standard `.sav` in `%APPDATA%` | Atomic Saves (Automatic `.sav.bak`) |
+| **Automated Hardware Tests** | Blargg &amp; Mooneye-GB suites | 63 / 63 Passing Test ROMs |
 
 
 ## Install in one command
