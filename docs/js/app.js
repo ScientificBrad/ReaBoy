@@ -684,7 +684,7 @@
       checksum: '0x58 · VALID (Z=1)',
       hw: 'DMG-01 Monochrome',
       verdict: 'PASS',
-      note: 'Fixed in ReaBoy v1.0.1 BETA! LCD-off STAT now correctly reports Mode 0 so setup-screen transitions complete cleanly (3,600 frames PASS).',
+      note: 'Fixed in ReaBoy v2.0.0! LCD-off STAT now correctly reports Mode 0 so setup-screen transitions complete cleanly (3,600 frames PASS).',
     },
     marioland: {
       title: 'SUPER MARIO LAND',
@@ -694,7 +694,7 @@
       checksum: '0x2C · VALID (Z=1)',
       hw: 'DMG-01 Monochrome',
       verdict: 'PASS',
-      note: 'Verified playable in ReaBoy v1.0.1 BETA (World 1-1 capture, 3,600 frames PASS, PC=$0297, LCDC=$C3).',
+      note: 'Verified playable in ReaBoy v2.0.0 (World 1-1 capture, 3,600 frames PASS, PC=$0297, LCDC=$C3).',
     },
     zelda: {
       title: "ZELDA (LINK'S AWAKENING)",
@@ -1141,7 +1141,7 @@
       const title = $('#log-title').value.trim();
       const mapper = $('#log-mapper').value;
       const status = $('#log-status').value;
-      const notes = $('#log-notes').value.trim() || 'Logged locally in ReaBoy v1.0.1 BETA Compatibility Lab.';
+      const notes = $('#log-notes').value.trim() || 'Logged locally in ReaBoy v2.0.0 Compatibility Lab.';
       if (!title) return;
 
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');

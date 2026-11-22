@@ -18,21 +18,21 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="ReaBoy by BJ Studios">
   <meta property="og:title" content="ReaBoy User Manual &amp; Setup Guide">
-  <meta property="og:description" content="Official User Manual for ReaBoy v1.0.1 BETA Game Boy (DMG-01) emulator on Windows x64. Installation, drag & drop controls, Bootix firmware, and saves.">
+  <meta property="og:description" content="Official User Manual for ReaBoy v2.0 Game Boy (DMG-01) emulator on Windows x64. Installation, drag & drop controls, Bootix firmware, and saves.">
   <meta property="og:url" content="https://scientificbrad.github.io/ReaBoy/manual.html">
   <meta property="og:image" content="https://scientificbrad.github.io/ReaBoy/assets/img/og-preview.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ReaBoy User Manual &amp; Setup Guide">
-  <meta name="twitter:description" content="Official User Manual for ReaBoy v1.0.1 BETA Game Boy (DMG-01) emulator on Windows x64. Installation, drag & drop controls, Bootix firmware, and saves.">
+  <meta name="twitter:description" content="Official User Manual for ReaBoy v2.0 Game Boy (DMG-01) emulator on Windows x64. Installation, drag & drop controls, Bootix firmware, and saves.">
   <meta name="twitter:image" content="https://scientificbrad.github.io/ReaBoy/assets/img/og-preview.png">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "How to Install and Play Game Boy Games on ReaBoy v1.0.1 BETA",
+    "name": "How to Install and Play Game Boy Games on ReaBoy v2.0",
     "description": "Step-by-step guide to installing ReaBoy on Windows x64, loading .gb ROMs via drag and drop, configuring controls, and managing MBC1 battery saves.",
     "step": [
       {
@@ -95,7 +95,7 @@
 
     <article class="manual-article">
       <div class="manual-block">
-        <p class="eyebrow">OFFICIAL DOCUMENTATION · PRODUCT VERSION 1.0.1.0 (BETA)</p>
+        <p class="eyebrow">OFFICIAL DOCUMENTATION · PRODUCT VERSION 2.0.0.0</p>
         <h1 style="margin:0 0 0.6rem;font-size:clamp(1.9rem,3.4vw,2.6rem);">ReaBoy User Manual</h1>
         <p style="margin:0;color:var(--text-muted);font-size:1.02rem;line-height:1.6;">
           Official technical reference for Windows 10/11 x64 · Cycle-accurate DMG-01 architecture, keyboard controls, Bootix firmware, and CLI flags.
@@ -115,7 +115,7 @@
 
       <section class="manual-block" id="package">
         <h2>2. Production Package Contents</h2>
-        <p>The portable ZIP distribution (<code>ReaBoy-v1.0.1-win-x64.zip</code>) contains:</p>
+        <p>The portable ZIP distribution (<code>ReaBoy-v2.0.0-win-x64.zip</code>) contains:</p>
         <ul>
           <li><code>ReaBoy.exe</code> — Standalone application with bundled .NET 8 runtime and embedded Bootix DMG v1.2 firmware.</li>
           <li><code>README.md</code> — Bundled quick guide, controls reference, and version details.</li>
@@ -207,17 +207,17 @@ ReaBoy.exe game.gb --headless --skip-intro --frames 600</code></pre>
       </section>
 
       <section class="manual-block" id="checksums">
-        <h2>8. Official v1.0.1 BETA SHA-256 Checksums</h2>
+        <h2>8. Official v2.0.0 SHA-256 Checksums</h2>
         <p>Verify your downloads using PowerShell <code>Get-FileHash</code> against the published <code>SHA256SUMS.txt</code>:</p>
         <div class="terminal-box">
           <div class="terminal-top">
-            <span>SHA256SUMS.txt (v1.0.1)</span>
+            <span>SHA256SUMS.txt (v2.0.0)</span>
             <button class="copy-btn" type="button" data-copy-target="sha-sums">Copy</button>
           </div>
-          <pre><code id="sha-sums">047ec920a3c96fd3ed8c72b8ff6a84f92cc85b6cc4396beef7da151d7a2a1860  ReaBoy-v1.0.1-win-x64.zip
-790dd6733e9055896e4ad6ca624ccd2053608613fc8bdaf0345d80de575d028d  ReaBoy.exe
-6f156240898855061e647fed63ddc0ec0dae76a527f6d23d0423fd435e8b716c  install.ps1
-c313435280dda8ccfae0786c7159aab791a00930605101c647794f64bfa17b5e  dmg_boot.bin</code></pre>
+          <pre><code id="sha-sums">20cbad0749e856c5230b924ccc77c4016a98cb9c05e9f149d893c7182ad98d85  ReaBoy-v2.0.0-win-x64.zip
+ee7c6d4fc350eeab29f66d7197ac631d0fa37b9f162e78acdd718ffc09beca99  ReaBoy.exe
+c313435280dda8ccfae0786c7159aab791a00930605101c647794f64bfa17b5e  dmg_boot.bin
+014c49cff8a92aa7d0db0a7fa69de0ef84b3a775e64a71b9ff403e0098996c25  install.ps1</code></pre>
         </div>
       </section>
 
@@ -240,7 +240,7 @@ c313435280dda8ccfae0786c7159aab791a00930605101c647794f64bfa17b5e  dmg_boot.bin</
           <li><strong>HuC1 &amp; HuC3:</strong> Infrared transceiver and command parser with RTC/EEPROM (e.g. Pocket Family GB2).</li>
         </ul>
         <h3>Verified Test ROM Suites (63 / 63 Passing)</h3>
-        <p>184 automated tests continuously executed, including 16 Blargg CPU/timing/halt_bug suites, 37 Mooneye-GB acceptance &amp; MBC2 tests, 2 Matt Currie Acid2 suites (<code>dmg-acid2.gb</code> and <code>cgb-acid2.gbc</code> with 0 / 23,040 pixel diff), and 8 MagenTests CGB suites.</p>
+        <p>188 automated tests continuously executed, including 16 Blargg CPU/timing/halt_bug suites, 37 Mooneye-GB acceptance &amp; MBC2 tests, 2 Matt Currie Acid2 suites (<code>dmg-acid2.gb</code> and <code>cgb-acid2.gbc</code> with 0 / 23,040 pixel diff), and 8 MagenTests CGB suites.</p>
       </section>
     </article>
   </main>
@@ -267,10 +267,10 @@ c313435280dda8ccfae0786c7159aab791a00930605101c647794f64bfa17b5e  dmg_boot.bin</
       <div class="footer-col">
         <h4>Downloads</h4>
         <ul class="footer-links">
-          <li><a href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy-v1.0.1-win-x64.zip">ReaBoy v1.0.1 (64-Bit ZIP)</a></li>
+          <li><a href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/ReaBoy-v2.0.0-win-x64.zip">ReaBoy v2.0.0 (64-Bit ZIP)</a></li>
           <li><a href="https://raw.githubusercontent.com/ScientificBrad/ReaBoy/main/install.ps1">install.ps1 (CLI Installer)</a></li>
           <li><a href="https://github.com/ScientificBrad/ReaBoy/releases/latest/download/SHA256SUMS.txt">SHA256 Checksums ↗</a></li>
-          <li><a href="https://github.com/ScientificBrad/ReaBoy/releases" target="_blank" rel="noopener">Release Notes (v1.0.1) ↗</a></li>
+          <li><a href="https://github.com/ScientificBrad/ReaBoy/releases" target="_blank" rel="noopener">Release Notes (v2.0.0) ↗</a></li>
         </ul>
       </div>
 
